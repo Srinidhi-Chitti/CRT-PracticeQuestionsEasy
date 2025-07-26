@@ -1,0 +1,93 @@
+Q3.
+Printing Job
+There is a printing shop where the customers submit their print jobs at regular intervals, and each job takes a fixed amount of time to complete. You are given an integer value N denoting the total number of print jobs, and X denoting the time duration after which the next print job arrives.
+
+Your task is to find and return an integer value representing how long the last job will have to wait in the queue considering one print will take exactly 10 minutes.
+
+
+
+Input Format
+
+Input1: An integer value N representing the number of printing jobs.
+
+Input2: An integer value X representing the time duration after which the next print job arrives.
+
+
+
+Output Format
+
+Return an integer value representing how long the last job will have to wait in the queue. If in case, there is no waiting time then return 0.
+
+
+
+Example 1
+
+Sample Input 1
+
+Input1: 4
+
+Input2: 5
+
+
+
+Sample Output 1
+
+15
+
+
+
+Explanation
+
+Here, N = 4 and X = 5. Time to complete one print job is 10 mins. So, the time needed for three prints is 3 * 10 = 30. The last print job arrives at 15 minutes (3 * 5). So, the waiting time is 30 – 15 = 15. Hence 15 is returned as the output.
+
+
+
+Example 2 
+
+Sample Input 2
+
+Input1: 3
+
+Input2: 10
+
+
+
+Sample Output 2 
+
+0
+
+
+
+Explanation
+
+Here, N = 3 and X = 10, time to complete one print job is 10 mins. So the time needed for 2 prints is 2 * 10 = 20. The last print job arrives at 20 minutes (2 * 10). So the waiting time is 20 – 20 = 0. Hence, 0 is returned as the output. 
+
+
+CODE:
+
+#include <stdio.h>
+
+int calculateWaitingTime(int N, int X) 
+{
+    int totalPrintTime = 10 * (N - 1);
+    int lastJobArrivalTime = (N - 1) * X;
+    int waitingTime = totalPrintTime - lastJobArrivalTime;
+    
+    if (waitingTime < 0)
+        return 0;
+    else
+        return waitingTime;
+}
+
+int main() 
+{
+    int N, X;
+
+    scanf("%d %d", &N, &X);
+
+    int waitingTime = calculateWaitingTime(N, X);
+ 
+    printf("%d\n", waitingTime);
+    
+    return 0;
+}
