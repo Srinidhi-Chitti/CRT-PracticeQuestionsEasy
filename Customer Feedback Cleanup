@@ -1,0 +1,74 @@
+Q1.
+Customer Feedback Cleanup
+In an online retail platform, customers often leave reviews for products. However, many customers type their feedback with repeated adjacent characters that could make the feedback appear unprofessional. For example, a customer may type: "I loooove this product" or "The proooduct was amazzzingg!!".
+
+To improve the readability and quality of the reviews, the platform's review management system needs to automatically clean up the reviews by removing adjacent duplicate characters.
+
+Your task is to write a program that processes a string containing a review and removes all adjacent duplicate characters, leaving only unique characters in sequence.
+
+For instance, given the review "The proooducttt was amazzzingg", the cleaned review should be "The product was amazing".
+
+
+
+Input Format
+
+The first line contains a single string S, representing the customer review.
+
+
+Output Format
+
+Print the string after removing all adjacent duplicate characters.
+
+
+Example 1
+
+Sample Input 1
+
+azxxzy
+
+
+
+Sample Output 1
+
+ay
+
+
+
+Explanation
+
+For the input, "azxxzy", removing adjacent duplicates "xx" results in "azzy". After removing "zz", the result is "ay".
+
+
+
+Example 2
+
+Sample Input 2
+
+aaccdd
+
+
+
+Sample Output 2
+
+Empty String
+
+
+
+Explanation
+
+For the input, "aaccdd", removing all adjacent duplicates results in an empty string.
+
+CODE:
+
+def remove_duplicates(s):
+    stack = []
+    for ch in s:
+        if stack and stack[-1] == ch:
+            stack.pop()
+        else:
+            stack.append(ch)
+    result = ''.join(stack)
+    return "Empty String" if not result else result
+s = input()
+result = remove_duplicates(s)
+print(result)
