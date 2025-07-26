@@ -1,0 +1,81 @@
+Q2.
+Machine Settings Adjustment for Precision Manufacturing
+In a precision manufacturing unit, a machine’s settings need to be adjusted periodically based on a predefined series to ensure accuracy in production. The series used for these settings is defined as: 0, 0, 2, 1, 4, 2, 6, 3, 8, 4, 10, 5, 12, 6, 14, 7, 16, 8...
+
+The series is a combination of two distinct sequences:
+
+All the odd terms in the series form a sequence of even numbers in ascending order: 0, 2, 4, 6, 8, 10, 12, 14, 16, ...
+All the even terms are derived from the previous odd term using the formula: x/2x / 2x/2.
+Your task is to write a program to determine the Nth term of the series, which will be used to set the machine configuration on the Nth adjustment cycle.
+
+
+
+Input Format
+
+The first line of input contains an integer N, representing the adjustment cycle number.
+
+
+Output Format
+
+Print the Nth term in the series.
+
+
+Example 1
+
+Sample Input 1
+
+5
+
+
+
+Sample Output 1
+
+4
+
+
+
+Explanation
+
+The 5th term is an odd term in the series. The odd terms form a sequence of even numbers: 0, 2, 4, 6, 8, ... The 3rd term in this sequence is 4.
+
+
+Example 2
+
+Sample Input 2
+
+8
+
+
+
+Sample Output 2
+
+3
+
+
+
+Explanation
+
+The 8th term is an even term in the series. It is derived from the previous odd term (6) using the formula 6/2=3.
+
+CODE:
+#include <stdio.h>
+
+int findNthTerm(int N) 
+{
+    if (N % 2 == 1) 
+    {
+        return (N / 2) * 2;  // Odd positions: return even numbers
+    } 
+    else 
+    {
+        return (N / 2) - 1;  // Even positions: return odd numbers
+    }
+}
+
+int main() 
+{
+    int N;
+    scanf("%d", &N);
+    printf("%d\n", findNthTerm(N));
+    return 0;
+}
