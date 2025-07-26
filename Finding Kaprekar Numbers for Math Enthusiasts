@@ -1,0 +1,99 @@
+Q3.
+Finding Kaprekar Numbers for Math Enthusiasts
+Jaffer is preparing for his upcoming Math Olympiad and has been fascinated by unique mathematical concepts. His Math teacher, Meena, has introduced him to Kaprekar numbers. A Kaprekar number is defined as follows:
+
+Consider an n-digit number k. If you square k, split the result into two parts such that:
+The right part has n digits (or less if necessary), and the left part has the remaining digits.
+If the sum of these two parts equals k, then k is a Kaprekar number.
+Jaffer needs your help to determine whether a given number is a Kaprekar number.
+
+
+
+Input Format
+
+A single integer that represents the number k.
+
+
+Constraints
+
+There are no specific constraints.
+
+
+Output Format
+
+Print "Kaprekar Number" if the number is a Kaprekar number.
+Otherwise, print "Not a Kaprekar Number".
+
+
+Example 1
+
+Sample Input 1
+
+45
+
+
+
+Sample Output 1
+
+Kaprekar Number
+
+
+
+Explanation
+
+The number 45 squared is 2025. When split into two parts, 20 and 25, the sum is 20 + 25 = 45, which equals the original number. Thus, 45 is a Kaprekar number.
+
+
+
+Example 2
+
+Sample Input 2
+
+23
+
+
+
+Sample Output 2
+
+Not a Kaprekar Number
+
+
+
+Explanation
+
+The number 23 squared is 529. When split into parts (5 and 29), the sum is 5 + 29 = 34, which is not equal to the original number 23. Thus, 23 is not a Kaprekar number.
+
+
+CODE:
+
+#include <stdio.h>
+#include <math.h>
+
+int main() 
+{
+    int k;
+    scanf("%d", &k);
+
+    long long square = (long long)k * k;
+
+    int n = 0, temp = k;
+    while (temp > 0) 
+    {
+        temp /= 10;
+        n++;
+    }
+
+    int rightPart = (int)(square % (int)pow(10, n));
+    int leftPart = (int)(square / (int)pow(10, n));
+
+    if (leftPart + rightPart == k) 
+    {
+        printf("Kaprekar Number\n");
+    } 
+    else 
+    {
+        printf("Not a Kaprekar Number\n");
+    }
+
+    return 0;
+}
