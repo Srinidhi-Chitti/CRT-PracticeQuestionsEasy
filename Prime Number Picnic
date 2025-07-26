@@ -1,0 +1,86 @@
+Q4.
+Prime Number Picnic
+You are planning a picnic for a group of friends who love math. To make it interesting, you decided to bring unique numbers of items, N. Your task is to find and return an integer value representing the sum of all the prime numbers till N. In case, the number of items is 0 or 1, return 0.
+
+
+
+Note
+
+Prime numbers are natural numbers that are divisible by only 1 and the number itself.
+
+
+
+Input Format
+
+Input1: An integer value N
+
+
+
+Output Format
+
+Return an integer value representing the sum of the prime numbers till N. In case, the number of items is not prime, return 0.
+
+
+
+Example 1
+
+Sample Input 1
+
+Input1: 10
+
+
+
+Sample Output 1
+
+17
+
+
+
+Explanation
+
+Here, N = 10. The prime numbers between 2 and 10 are 2, 3, 5, 7 and their sum is 17. Hence, 17 is returned as the output.
+
+
+
+Example
+
+Sample Input 2
+
+Input1: 20
+
+
+
+Samle Output 2
+
+77
+
+
+
+Explanation
+
+Here, N = 20. The prime numbers between 2 and 20 are 2, 3, 5, 7, 11, 19 and their sum is 77. Hence, 77 is returned as the output
+
+
+CODE:
+
+
+import math
+
+def is_prime(num):
+    if num <= 1:
+        return False
+    for i in range(2, int(math.sqrt(num)) + 1):
+        if num % i == 0:
+            return False
+    return True
+
+N = int(input())
+
+if N <= 1:
+    print(0)
+else:
+    total = 0
+    for i in range(2, N + 1):
+        if is_prime(i):
+            total += i
+    print(total)
