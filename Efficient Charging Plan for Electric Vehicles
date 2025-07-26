@@ -1,0 +1,71 @@
+Q1.
+Efficient Charging Plan for Electric Vehicles
+Imagine you are working on a smart system for an electric vehicle (EV) charging station. The system needs to optimize charging plans based on the battery consumption rate and ensure efficient charging sessions. To decide the efficiency, the system checks if a given total energy consumption value in kWh is a "Niven number." A "Niven number" is one that can be evenly divided by the sum of its digits.
+
+Your task is to implement a function that checks if the energy consumption value is a Niven number. If it is, the system will determine how many complete charging cycles can be run. If the number is not a Niven number, the system will flag the value for recalibration.
+
+int CheckNivenNumber(int n)
+
+The function CheckNivenNumber accepts an integer n (representing energy consumption in kWh) as an argument. The function should check if n is a Niven number. If n is a Niven number, return the quotient when n is divided by the sum of its digits. Otherwise, return 0.
+
+
+
+Input Format
+
+A single integer n representing the energy consumption in kWh. (Assume n > 0)
+
+
+Output Format
+
+An integer representing the number of complete charging cycles or 0 if the number is not a Niven number.
+
+
+Example 1
+
+Sample Input 1
+
+36
+
+
+
+Sample Output 1
+
+4
+
+
+
+Explanation
+
+The energy consumption value is 36. The sum of the digits is 3 + 6 = 9.
+Since 36 is divisible by 9, 36 / 9 = 4. Thus, 4 complete charging cycles can be executed efficiently.
+
+
+Example 2
+
+Sample Input 2
+
+57
+
+
+
+Sample Output 2
+
+0
+
+
+
+Explanation
+
+The energy consumption value is 57. The sum of the digits is 5 + 7 = 12.
+Since 57 is not divisible by 12, the system returns 0, indicating an inefficient charging cycle.
+
+
+CODE:
+
+
+n= int(input())
+digit_sum = sum(int(d) for d in str(n))
+if digit_sum == 0 or n % digit_sum != 0:
+  print(0)
+else:
+  print(n // digit_sum)
