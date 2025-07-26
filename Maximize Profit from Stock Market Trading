@@ -1,0 +1,96 @@
+Q2.
+Maximize Profit from Stock Market Trading
+
+Imagine you are a financial analyst working for a trading firm. You are analyzing the stock prices of a particular company over several days. Your goal is to maximize the profit by identifying a sequence of consecutive days in which the company’s stock price increases the most. To do this, you want to find the contiguous subarray (representing the consecutive days) where the sum of the changes in stock prices is the largest. If the change in price for a day is negative, it means the stock price dropped that day. Your job is to write a program to calculate the maximum profit possible.
+
+Write a program to find the subarray with the largest sum of stock price changes and return the maximum sum. The program should read the stock price changes for n days from the user and compute the maximum profit that can be made.
+
+
+
+Input Format
+
+The first line contains an integer n, the number of days.
+The second line contains n integers representing the change in stock prices for each day.
+
+
+Output Format
+
+Print the maximum profit that can be made.
+
+
+Example 1
+
+Sample Input 1
+
+5
+
+1 2 3 -2 5
+
+
+
+Sample Output 1
+
+9
+
+
+
+Explanation
+
+The subarray [1, 2, 3, -2, 5] has the largest sum, which is 9. This subarray represents the days during which the stock price increased the most, and the maximum profit that can be made is 9.
+
+
+
+Example 2
+
+Sample Input 2
+
+4  
+
+-4 -2 -7 -1
+
+
+
+Sample Output 2
+
+-1
+
+CODE:
+
+
+#include <stdio.h>
+
+int findMaxSubarraySum(int nums[], int n) 
+{
+    int maxSoFar = nums[0];
+    int currentMax = nums[0];
+    
+    for (int i = 1; i < n; i++) 
+    {
+        if (currentMax + nums[i] > nums[i])
+            currentMax = currentMax + nums[i];
+        else
+            currentMax = nums[i];
+        
+        if (currentMax > maxSoFar)
+            maxSoFar = currentMax;
+    }
+    
+    return maxSoFar;
+}
+
+int main() 
+{
+    int n;
+    scanf("%d", &n);
+
+    int priceChanges[n];
+    for (int i = 0; i < n; i++) 
+    {
+        scanf("%d", &priceChanges[i]);
+    }
+
+    int maxProfit = findMaxSubarraySum(priceChanges, n);
+    printf("%d\n", maxProfit);
+
+    return 0;
+}
