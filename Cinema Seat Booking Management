@@ -1,0 +1,81 @@
+Q4.
+Cinema Seat Booking Management
+Imagine a cinema hall represented as a grid with m rows and n columns. Each seat is either reserved or vacant. A reserved seat is marked with a 1, and a vacant seat is marked with a 0. If any seat becomes unavailable (marked as 0), the entire row and column that contain the unavailable seat must be marked as 0 to indicate that no seat in that row or column can be booked.
+
+Write a program to manage the cinema seat bookings based on the above scenario. If a seat becomes unavailable (marked as 0), update the cinema hall's seating arrangement by setting all seats in that row and column to 0.
+
+
+
+Input Format
+
+The first line contains two integers, m and n, representing the number of rows and columns in the cinema hall.
+The next m lines contain n integers (either 0 or 1), representing the seating arrangement of the cinema hall.
+
+
+Output Format
+
+Output the updated seating arrangement of the cinema hall after marking the unavailable seats.
+
+
+Sample Input
+
+3 3
+
+1 1 1
+
+1 0 1
+
+1 1 1
+
+ 
+
+Sample Output
+
+1 0 1
+
+0 0 0
+
+1 0 1
+
+
+
+Explanation
+
+The original seating arrangement is:
+
+1 1 1
+
+1 0 1
+
+1 1 1
+
+Since seat (1, 1) (second row, second column) is marked as 0, the entire second row and second column must be set to 0.
+
+The updated seating arrangement becomes:
+
+1 0 1
+
+0 0 0
+
+1 0 1
+
+CODE:
+
+m, n = map(int, input().split())
+matrix = []
+for _ in range(m):
+    row = list(map(int, input().split()))
+    matrix.append(row)
+rows = [False] * m
+cols = [False] * n
+for i in range(m):
+    for j in range(n):
+        if matrix[i][j] == 0:
+            rows[i] = True
+            cols[j] = True
+for i in range(m):
+    for j in range(n):
+        if rows[i] or cols[j]:
+            matrix[i][j] = 0
+for row in matrix:
+    print(*row)
