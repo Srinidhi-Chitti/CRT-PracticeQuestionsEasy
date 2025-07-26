@@ -1,0 +1,64 @@
+Q2.
+Recursive String Length Calculator
+In a digital document management system, each document is represented as a string. As part of the system's features, you need to determine the length of a string using a recursive approach. This feature is essential for efficient document analysis without relying on built-in methods.
+
+Your task is to write a program that calculates the length of a given string using recursion.
+
+
+
+Input Format
+
+A single string SSS representing the content of the document.
+
+
+Output Format
+
+An integer representing the length of the string.
+
+
+Example 1
+
+Sample Input 1
+
+hello
+
+
+
+Sample Output 1 
+
+5
+
+
+
+Explanation
+
+The string "hello" has 5 characters, so the output is 5.
+
+
+Example 2
+
+Sample Input 2 
+
+recursion
+
+
+
+Sample Output 2 
+
+9
+
+
+
+Explanation
+
+The string "recursion" has 9 characters, so the output is 9.
+
+
+CODE:
+def get_length(s):
+    if s == "":
+        return 0
+    return 1 + get_length(s[1:])
+
+s = input()
+print(get_length(s))
