@@ -1,0 +1,132 @@
+Q3.
+Removing Outdated Task by Deadline
+Imagine you are managing a task scheduler that tracks a list of tasks to be executed in the future. Each task has a position in the list, representing its priority in execution. Sometimes, a task near the end of the list might become irrelevant or outdated due to changing priorities or deadlines, and you need to remove it.
+
+For example, if a task becomes unnecessary due to an updated project deadline, you may want to remove the task from the list. However, you only know the position of the task relative to the end of the list (e.g., the 2nd last task). The system must be capable of efficiently removing tasks from the scheduler based on their relative position from the end of the list.
+
+Remove the task at the n-th position from the end of the task list and return the updated list of tasks.
+
+
+
+Input Format
+
+The first line contains an integer n, representing the number of nodes (tasks) in the list.
+
+The next line contains n integers, each representing the task ID in the list.
+
+The last line contains an integer n, representing the position of the node from the end that needs to be removed.
+
+
+
+Output Format
+
+The output is a list of task IDs with the n-th task from the end removed.
+
+
+
+Sample Input
+
+5
+
+1 2 3 4 5
+
+2
+
+
+
+Sample Output
+
+1 2 3 5
+
+
+
+Explanation
+
+The task list [1, 2, 3, 4, 5] and n = 2. Remove the 2nd task from the end, which is 4. After removing 4, the list becomes [1, 2, 3, 5].
+
+CODE:
+
+#include <stdio.h>
+#include <stdlib.h>
+
+struct Node {
+    int value;
+    struct Node* next;
+};
+
+struct Node* head = NULL;
+
+// Function to add a new node at the end
+void add(int value) {
+    struct Node* newNode = (struct Node*)malloc(sizeof(struct Node));
+    newNode->value = value;
+    newNode->next = NULL;
+
+    if (head == NULL) {
+        head = newNode;
+        return;
+    }
+
+    struct Node* current = head;
+    while (current->next != NULL) {
+        current = current->next;
+    }
+    current->next = newNode;
+}
+
+// Function to remove the N-th node from the end
+void removeNthFromEnd(int n) {
+    struct Node* dummy = (struct Node*)malloc(sizeof(struct Node));
+    dummy->value = 0;
+    dummy->next = head;
+
+    struct Node* first = dummy;
+    struct Node* second = dummy;
+
+    // Move first pointer n+1 steps ahead
+    for (int i = 0; i <= n; i++) {
+        if (first == NULL) return;
+        first = first->next;
+    }
+
+    // Move both pointers until first reaches the end
+    while (first != NULL) {
+        first = first->next;
+        second = second->next;
+    }
+
+    // Remove the nth node
+    struct Node* temp = second->next;
+    if (temp != NULL) {
+        second->next = temp->next;
+        free(temp);
+    }
+
+    head = dummy->next;
+    free(dummy);
+}
+
+// Function to display the list
+void display() {
+    struct Node* current = head;
+    while (current != NULL) {
+        printf("%d ", current->value);
+        current = current->next;
+    }
+}
+
+int main() {
+    int n, value, removeNth;
+    scanf("%d", &n);  // Number of elements
+
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &value);
+        add(value);
+    }
+
+    scanf("%d", &removeNth);  // N-th node from end to remove
+    removeNthFromEnd(removeNth);
+    display();
+
+    return 0;
+}
