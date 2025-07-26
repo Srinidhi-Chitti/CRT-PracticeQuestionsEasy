@@ -1,0 +1,88 @@
+Q1.
+Displaying Pyramid Pattern for Product Stock Display
+A retail store is creating a product display with varying stock quantities. They want to represent the quantity of each product in a visually appealing pyramid format. The display starts with a single product and increases the quantity in each row, followed by a symmetric pattern as the stock decreases again. This pyramid will help the store visualize and manage product quantities in a clear and easy-to-understand way.
+
+Write a program to print a pyramid-like pattern where each row represents the product quantity, and the quantity number is repeated for that row.
+
+You are given an integer n which represents the middle row and the highest quantity level for the pyramid pattern. Print the pyramid pattern where:
+
+The first row prints 1
+The second row prints 2*2
+The third row prints 3*3*3
+The last row also mirrors the rows above, decreasing symmetrically.
+
+
+Input Format
+
+A single integer n representing the middle row and maximum number of repetitions in the pyramid pattern.
+
+
+Output Format
+
+Print the pyramid pattern in the specified format.
+
+
+Sample Input
+
+5
+
+
+
+Sample Output
+
+1
+
+2*2
+
+3*3*3
+
+4*4*4*4
+
+5*5*5*5*5
+
+5*5*5*5*5
+
+4*4*4*4
+
+3*3*3
+
+2*2
+
+1
+
+
+CODE:
+
+#include <stdio.h>
+
+int main() 
+{
+    int n;
+    scanf("%d", &n);
+    for (int i = 1; i <= n; i++) 
+    {
+        for (int j = 1; j <= i; j++) 
+        {
+            printf("%d", i);
+            if (j != i) 
+            {
+                printf("*");
+            }
+        }
+        printf("\n");
+    }
+    for (int i = n; i >= 1; i--) 
+    {
+        for (int j = 1; j <= i; j++) 
+        {
+            printf("%d", i);
+            if (j != i) 
+            {
+                printf("*");
+            }
+        }
+        printf("\n");
+    }
+
+    return 0;
+}
