@@ -1,0 +1,72 @@
+Q1.
+Distributed Packaging in a Warehouse
+You are working as a software engineer for a large warehouse that manages various items for shipment. The warehouse has a robotic system that groups items into boxes, but some items cannot be evenly distributed among boxes and are left as leftovers. Your task is to write a program that calculates the sum of leftover items from the distribution process for a given set of items.
+
+The warehouse has n items, and you need to pack these items into boxes that can hold div items each. The robotic system divides the items into boxes and keeps track of the leftover items that don't fit into a full box. Your program should calculate and print the total sum of these leftovers for the items numbered from 1 to n.
+
+
+
+Input Format
+
+The first line contains an integer, n, representing the total number of items.
+The second line contains an integer, div, representing the capacity of each box.
+
+
+Constraints
+
+0<n<105
+0<div<105
+
+
+Output Format
+
+Print the total sum of the remainders when items numbered from 1 to n are divided by div.
+
+
+Sample Input
+
+12
+
+4
+
+
+
+Sample Output
+
+18
+
+
+
+Explanation
+
+The remainders when the items numbered from 1 to 12 are divided by 4 are:
+1 % 4 = 1
+2 % 4 = 2
+3 % 4 = 3
+4 % 4 = 0
+5 % 4 = 1
+6 % 4 = 2
+7 % 4 = 3
+8 % 4 = 0
+9 % 4 = 1
+10 % 4 = 2
+11 % 4 = 3
+12 % 4 = 0
+Summing up all the remainders: 1 + 2 + 3 + 0 + 1 + 2 + 3 + 0 + 1 + 2 + 3 + 0 = 18.
+
+CODE:
+
+#include <stdio.h>
+
+int main()
+{
+    int n, div;
+    scanf("%d %d", &n, &div);
+    int fullCycles = n / div;
+    int remainder = n % div;
+    int sumOfFullCycles = fullCycles * (div * (div - 1)) / 2;
+    int sumOfRemainder = (remainder * (remainder + 1)) / 2;
+    int totalSum = sumOfFullCycles + sumOfRemainder;
+    printf("%d\n", totalSum);
+    return 0;
+}
