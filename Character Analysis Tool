@@ -1,0 +1,73 @@
+Q1.
+Character Analysis Tool
+You are developing a Character Analysis Tool for a text processing application that helps users analyze characters they input. One of the features of this tool is to display the ASCII value of a given character. This feature can be particularly useful for programmers, data analysts, or anyone working with text data, as ASCII values play a crucial role in various programming tasks and data encoding.
+
+In this scenario, the program prompts the user to input a single character (either uppercase or lowercase). The program then computes and displays the ASCII value of that character. The functionality helps users understand the relationship between characters and their corresponding ASCII values, which can aid in debugging and development processes.
+
+
+
+Input Format
+
+The input consists of a single character, which must be an alphabet (either lowercase or uppercase).
+
+
+
+Output Format
+
+The output should print the ASCII value of the character.
+
+
+
+Sample Input
+
+a
+
+
+
+Sample Output
+
+97You are developing a Character Analysis Tool for a text processing application that helps users analyze characters they input. One of the features of this tool is to display the ASCII value of a given character. This feature can be particularly useful for programmers, data analysts, or anyone working with text data, as ASCII values play a crucial role in various programming tasks and data encoding.
+
+In this scenario, the program prompts the user to input a single character (either uppercase or lowercase). The program then computes and displays the ASCII value of that character. The functionality helps users understand the relationship between characters and their corresponding ASCII values, which can aid in debugging and development processes.
+
+
+
+Input Format
+
+The input consists of a single character, which must be an alphabet (either lowercase or uppercase).
+
+
+
+Output Format
+
+The output should print the ASCII value of the character.
+
+
+
+Sample Input
+
+a
+
+
+
+Sample Output
+
+97
+
+CODE:
+
+#include <stdio.h>
+
+int main() 
+{
+    char character;
+    
+    // Input a character
+    scanf("%c", &character);
+    
+    // Print the ASCII value of the character
+    int asciiValue = (int) character;
+    printf("%d\n", asciiValue);
+    
+    return 0;
+}
