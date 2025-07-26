@@ -1,0 +1,123 @@
+Q1.
+Verify Team Performance Balance
+In a cricket coaching session, a coach has created a binary tree structure to represent the total runs that each batsman scored in different matches. The leaf nodes represent individual player scores, while non-leaf nodes represent the total score derived from combining the scores of their left and right child nodes. The coach wants to ensure that each player's combined score accurately represents the sum of the individual scores of their contributing players (i.e., the sum of scores of child nodes).
+
+Your task is to check if the binary tree representing player scores satisfies the "Sum Tree" property. In a Sum Tree, every non-leaf node’s value should equal the sum of the values of its left and right child nodes.
+
+
+
+Input Format
+
+The first line contains the number of nodes in the binary tree.
+The second line contains the values of the nodes (in level-order traversal).
+
+
+Output Format
+
+Print "Yes" if the binary tree satisfies the Sum Tree property.
+Print "No" otherwise.
+
+
+Example 1
+
+Sample Input 1
+
+7
+
+26 10 3 4 6 2 1
+
+
+
+Sample Output 1
+
+Yes
+
+
+
+Explanation
+
+The binary tree is represented as follows:
+
+       26
+
+       /  \
+
+    10  3
+
+    / \  / \
+
+   4 6 2  1
+
+The root node value 26 is the sum of its left subtree (10) and right subtree (3). Similarly, each non-leaf node satisfies the Sum Tree condition. Therefore, the output is "Yes".
+
+
+
+Example 2
+
+Sample Input 2
+
+5
+
+30 10 20 5 5
+
+
+
+Sample Output 2
+
+No
+
+
+
+Explanation
+
+The binary tree is represented as follows:
+
+   30
+
+   /  \
+
+10  20
+
+  / \
+
+5  5
+
+Node 10 equals 5 + 5, but node 30 does not equal the sum of 10 and 20. Hence, it does not satisfy the Sum Tree property.
+
+CODE:
+class Node:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+def build_tree(values):
+    if not values:
+        return None
+    nodes = [Node(val) for val in values]
+    n = len(nodes)
+    for i in range(n):
+        left_index = 2 * i + 1
+        right_index = 2 * i + 2
+        if left_index < n:
+            nodes[i].left = nodes[left_index]
+        if right_index < n:
+            nodes[i].right = nodes[right_index]
+    return nodes[0]
+def is_sum_tree(root):
+    if root is None:
+        return True, 0
+    if root.left is None and root.right is None:
+        return True, root.val
+
+    left_check, left_sum = is_sum_tree(root.left)
+    right_check, right_sum = is_sum_tree(root.right)
+
+    current_check = root.val == (left_sum + right_sum)
+    return left_check and right_check and current_check, root.val + left_sum + right_sum
+
+n = int(input())
+values = list(map(int, input().split()))
+root = build_tree(values)
+valid, _ = is_sum_tree(root)
+print("Yes" if valid else "No")
+
