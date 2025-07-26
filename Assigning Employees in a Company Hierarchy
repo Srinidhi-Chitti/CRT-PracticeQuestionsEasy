@@ -1,0 +1,157 @@
+Q2.
+Assigning Employees in a Company Hierarchy
+
+You are working on an employee hierarchy management system for a company where each employee is assigned a unique employee ID. This hierarchy is represented as a Binary Search Tree (BST), where each node in the BST represents an employee. The left child of the node contains employees with IDs smaller than the current employee, and the right child contains employees with IDs greater than the current employee.
+
+Your task is to find the inorder successor of a given employee in the company. The inorder successor of a node in a BST is the next node in inorder traversal of the BST. In other words, it's the node with the smallest key greater than the key of the given node.
+
+You need to write a program to find and print the inorder successor of a specified employee based on their employee ID.
+
+
+
+Input Format
+
+The first line contains an integer nnn, representing the number of employees (nodes) to be inserted into the BST.
+The second line contains nnn space-separated integers, representing the employee IDs.
+The third line contains a single integer, representing the employee ID for which you need to find the inorder successor.
+
+
+Output Format
+
+Print the inorder successor of the employee. If the employee has no inorder successor, print No Inorder Successor.
+
+
+Constraints
+
+The BST maintains the property where the left subtree of a node contains values less than the node's value, and the right subtree contains values greater than the node's value.
+
+
+Example 1
+
+Sample Input 1
+
+6
+
+20 10 30 5 15 25
+
+15
+
+
+
+Sample Output 1
+
+20
+
+
+
+Explanation
+
+The Binary Search Tree is constructed as follows:
+     20
+
+    /     \
+
+  10     30
+
+ / \      /
+
+ 5  15 25
+
+The inorder successor of node 15 is node 20 because 20 is the smallest number greater than 15.
+
+
+Example 2
+
+Sample Input 2
+
+3
+
+100 50 150
+
+150
+
+
+
+Sample Output 2
+
+No Inorder Successor
+
+
+
+Explanation
+
+The Binary Search Tree is constructed as follows:
+  100
+
+  /  \
+
+50  150
+
+The node with ID 150 has no inorder successor, as it is the largest element in the BST.Hence it is printing " No Inorder Successor".
+
+
+CODE:
+
+import sys
+
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+def insert_into_bst(root, val):
+    if root is None:
+        return TreeNode(val)
+    if val < root.val:
+        root.left = insert_into_bst(root.left, val)
+    else:
+        root.right = insert_into_bst(root.right, val)
+    return root
+
+def find_inorder_successor(root, data):
+    current = find(root, data)
+    if current is None:
+        return None
+    if current.right:
+        return find_min(current.right)
+    successor = None
+    ancestor = root
+    while ancestor:
+        if data < ancestor.val:
+            successor = ancestor
+            ancestor = ancestor.left
+        elif data > ancestor.val:
+            ancestor = ancestor.right
+        else:
+            break
+    return successor
+
+def find(root, data):
+    if root is None or root.val == data:
+        return root
+    if data < root.val:
+        return find(root.left, data)
+    else:
+        return find(root.right, data)
+
+def find_min(node):
+    while node.left:
+        node = node.left
+    return node
+
+def main():
+    n = int(sys.stdin.readline().strip())
+    root = None
+    values = list(map(int, sys.stdin.readline().strip().split()))
+    for val in values:
+        root = insert_into_bst(root, val)
+    employee_id = int(sys.stdin.readline().strip())
+    successor = find_inorder_successor(root, employee_id)
+    if successor:
+        print(successor.val)
+    else:
+        print("No Inorder Successor")
+
+if __name__ == "__main__":
+    main()
