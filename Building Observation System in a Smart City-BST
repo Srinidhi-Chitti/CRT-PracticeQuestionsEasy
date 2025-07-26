@@ -1,0 +1,95 @@
+Q1.
+Building Observation System in a Smart City
+You are working on a building observation system in a Smart City. The city is represented as a Binary Search Tree (BST), where each node represents a building, and the value of the node represents the height of the building. Your task is to determine the left view of the city skyline when viewed from the west.
+
+The left view of a Binary Search Tree is the set of nodes that are visible when the tree is viewed from the left side. In other words, for each level of the tree, the first node encountered from the left side is part of the left view.
+
+Write a program to compute and print the left view of the binary search tree that represents the buildings.
+
+
+
+Input Format
+
+The first line contains an integer nnn, representing the number of buildings (nodes) to be inserted into the BST.
+The second line contains nnn space-separated integers, representing the heights of the buildings (node values) for insertion.
+
+
+Output Format
+
+Output the node values (building heights) that represent the left view of the binary search tree, one per line.
+
+
+Constraints
+
+Each node's value is a positive integer representing the building height.
+The BST maintains the property where the left subtree of a node contains values less than the node's value, and the right subtree contains values greater than the node's value.
+
+
+Sample Input
+
+6
+
+10 5 15 2 7 12
+
+
+
+Sample Output
+
+10
+
+5
+
+2
+
+
+
+Explanation
+
+The Binary Search Tree is constructed as follows:
+     10
+
+    / \
+
+  5 15
+
+  / \   /
+
+2  7 12
+
+The left view of the tree is [10, 5, 2], which are the first nodes visible when looking at the tree from the left.
+
+
+CODE:
+class TreeNode:
+    def __init__(self, val):
+        self.val = val
+        self.left = None
+        self.right = None
+
+class BST:
+    def insert_into_bst(self, root, val):
+        if root is None:
+            return TreeNode(val)
+        if val < root.val:
+            root.left = self.insert_into_bst(root.left, val)
+        else:
+            root.right = self.insert_into_bst(root.right, val)
+        return root
+
+def print_left_view_rec(root, level, max_level):
+    if root is None:
+        return
+    if max_level[0] < level:
+        print(root.val)
+        max_level[0] = level
+    print_left_view_rec(root.left, level + 1, max_level)
+    print_left_view_rec(root.right, level + 1, max_level)
+
+if __name__ == "__main__":
+    n = int(input())
+    values = list(map(int, input().split()))
+    bst = BST()
+    root = None
+    for val in values:
+        root = bst.insert_into_bst(root, val)
+    print_left_view_rec(root, 1, [0])
