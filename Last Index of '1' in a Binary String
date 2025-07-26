@@ -1,0 +1,78 @@
+Q1.
+Last Index of '1' in a Binary String
+Given a string S consisting of only '0's and '1's. Print the last index of '1' present in it.
+
+
+
+﻿Input Format
+
+The first line of the input contains the number of test cases T, And these T lines follow each containing a stream of characters.
+
+
+
+Constraints
+
+1 <= T <= 110
+
+1 <= |S| <= 106
+
+
+
+Output Format
+
+Corresponding to every test case, print the output of the last index of 1. If 1 is not present, print "-1" (without quotes).
+
+
+
+Example 1
+
+Sample Input 1
+
+2
+
+00001
+
+0
+
+
+
+Sample Output 1
+
+4
+
+-1
+
+
+
+Explanation
+
+Testcase 1: The last index of 1 in the given string is 4.
+
+Testcase 2: Since 1 is not present, so the output is -1.
+
+
+CODE:
+import java.util.*;
+
+public class Main{
+  public static void main(String[] args){
+    Scanner sc = new Scanner(System.in);
+    int t = sc.nextInt();
+    sc.nextLine();
+
+    for(int i = 0; i<t; i++){
+      String s = sc.nextLine();
+      int lastIndex = -1;
+
+      for(int j = s.length() - 1; j>=0; j--){
+        if(s.charAt(j) == '1'){
+          lastIndex = j;
+          break;
+        }
+      }
+
+      System.out.println(lastIndex);
+    }
+  }
+}
+
