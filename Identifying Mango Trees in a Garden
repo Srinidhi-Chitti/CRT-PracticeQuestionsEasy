@@ -1,0 +1,118 @@
+Q1.
+Identifying Mango Trees in a Garden
+Leslie Burke, a passionate gardener in the enchanting kingdom of Terebinthia, takes great pride in her rectangular garden where she grows various trees. She follows a specific planting pattern: the mango trees are planted only along the first row, the first column, and the last column of her garden. Every other space in the garden has a different type of tree.
+
+As her garden expands, Leslie needs a way to determine whether a specific tree, given its position number, is a mango tree or not. Can you help Leslie by writing a program to identify if a particular tree in her garden is a mango tree based on its tree number?
+
+Write a Java program that accepts the garden dimensions in terms of rows and columns, along with a specific tree number. The program should determine if the specified tree number corresponds to a mango tree based on Leslie’s planting pattern. In Leslie's numbering system, trees are assigned sequentially across each row (row-wise order).
+
+Planting Rules
+
+Mango trees are located in:
+
+The first row (all trees in this row are mango trees)
+The first column (the first tree in each row)
+The last column (the last tree in each row)
+
+
+Input Format
+
+The first line contains an integer, the number of rows in the garden.
+The second line contains an integer, the number of columns in the garden.
+The third line contains an integer, the tree number to be checked.
+
+
+Constraints
+
+Assume all input values are valid positive integers.
+
+
+
+Output Format
+
+Print "Yes" if the tree is a mango tree.
+Print "No" if the tree is not a mango tree.
+
+
+Example 1
+
+Sample Input 1
+
+5
+
+5
+
+11
+
+
+
+Sample Output 1
+
+Yes
+
+
+
+Explanation
+
+The garden has 5 rows and 5 columns, totaling 25 trees. The tree numbered 11 is in the first column of the third row, making it a mango tree.
+
+
+
+Example 2
+
+Sample Input 2
+
+2
+
+5
+
+8
+
+
+
+Sample Output 2
+
+No
+
+
+
+Explanation
+
+The garden has 2 rows and 5 columns, totaling 10 trees. The tree numbered 8 is not located in the first row, first column, or last column, so it is not a mango tree.
+
+
+CODE:
+#include <stdio.h>
+
+int main() {
+    int rows, columns, treeNumber;
+
+
+    scanf("%d %d %d", &rows, &columns, &treeNumber);
+
+    int totalTrees = rows * columns;
+
+
+    if (treeNumber < 1 || treeNumber > totalTrees) {
+        printf("No\n");
+        return 0;
+    }
+
+
+    if (treeNumber <= columns) {
+        printf("Yes\n");
+    }
+
+    else if ((treeNumber - 1) % columns == 0) {
+        printf("Yes\n");
+    }
+
+    else if (treeNumber % columns == 0) {
+        printf("Yes\n");
+    }
+    else {
+        printf("No\n");
+    }
+
+    return 0;
+}
