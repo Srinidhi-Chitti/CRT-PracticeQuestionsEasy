@@ -1,0 +1,93 @@
+Q2.
+Finding Numerological Reduction of a Transaction ID
+In a banking system, each transaction is assigned a unique transaction ID number. To identify the importance or "priority" of a transaction, a numerological reduction is calculated for the transaction ID. The numerological reduction is derived by repeatedly summing the digits of the transaction ID until a single digit is obtained. This reduction helps categorize transactions into different priority levels. The smaller the reduced value, the higher the priority of the transaction.
+
+Your task is to implement a function that calculates the numerological reduction of a transaction ID by summing its digits recursively until only one digit remains.
+
+You are given a transaction ID as a positive integer n. Your task is to calculate and return the numerological reduction of n.
+
+
+
+Input Format
+
+A positive integer n (0 ≤ n ≤ 10^9) representing a transaction ID.
+
+
+Output Format
+
+Returns the numerological reduction of n, which is a single digit obtained after recursively summing the digits.
+
+
+Example 1
+
+Sample Input 1
+
+3245
+
+
+
+Sample Output 1
+
+5
+
+
+
+Explanation
+
+Step 1: 3245 → 3 + 2 + 4 + 5 = 14
+Step 2: 14 → 1 + 4 = 5 Thus, the numerological reduction of 3245 is 5.
+
+
+Example 2
+
+Sample Input 2
+
+987
+
+
+
+Sample Output 2
+
+6
+
+
+
+Explanation
+
+Step 1: 987 → 9 + 8 + 7 = 24
+Step 2: 24 → 2 + 4 = 6 Thus, the numerological reduction of 987 is 6.
+
+CODE:
+python:
+def find_numerological_reduction(n):
+    if n == 0:
+        return 0
+    result = n % 9
+    return 9 if result == 0 else result
+
+n = int(input())
+
+print(find_numerological_reduction(n))
+
+C:
+#include <stdio.h>
+
+int FindNumerologicalReduction(int n) 
+{
+    // Special case for 0
+    if (n == 0) 
+    {
+        return 0;
+    }
+    // Use the digital root formula
+    int result = n % 9;
+    return result == 0 ? 9 : result;
+}
+
+int main() 
+{
+    int n;
+    scanf("%d", &n);
+    printf("%d\n", FindNumerologicalReduction(n));
+    return 0;
+}
