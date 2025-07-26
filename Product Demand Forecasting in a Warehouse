@@ -1,0 +1,102 @@
+Q2.
+Product Demand Forecasting in a Warehouse
+A warehouse uses a special formula to forecast product demands based on historical sales data. The formula follows a unique series to predict the demand for upcoming days. The series is defined as: 1, 1, 2, 3, 4, 9, 8, 27, 16, 81, 32, 243, 64, 729, 128, 2187...
+
+The series is a mixture of two geometric progressions:
+
+All the odd terms in the series form the first geometric series: 1,2,4,8,16,32,64,128,…1, 2, 4, 8, 16, 32, 64, 128, \dots1,2,4,8,16,32,64,128,… (with a common ratio of 2).
+All the even terms in the series form the second geometric series: 1,3,9,27,81,243,729,2187,…1, 3, 9, 27, 81, 243, 729, 2187, \dots1,3,9,27,81,243,729,2187,… (with a common ratio of 3).
+Your task is to create a Java program that calculates the Nth term of this series, which will be used to forecast the demand on the Nth day.
+
+
+
+Input Format
+
+The first line of input contains an integer N, which represents the day number for which the demand needs to be forecasted.
+
+
+Output Format
+
+Print the Nth term in the series.
+
+
+Example 1
+
+Sample Input 1
+
+5
+
+
+
+Sample Output 1
+
+4
+
+
+
+Explanation
+
+The 5th term is an odd term in the series. The odd terms follow the geometric progression: 1, 2, 4, 8, 16... with a common ratio of 2. The 5th term in this progression is 4.
+
+
+Example 2
+
+Sample Input 2
+
+8
+
+
+
+Sample Output 2
+
+27
+
+
+
+Explanation
+
+The 8th term is an even term in the series. The even terms follow the geometric progression: 1, 3, 9, 27, 81... with a common ratio of 3. The 4th term in this progression is 27.
+
+
+CODE:
+python:
+#include <stdio.h>
+#include <math.h>
+
+int findNthTerm(int N) {
+    if (N % 2 == 1) {
+        int termIndex = N / 2;
+        return (int)pow(2, termIndex);
+    } else {
+        int termIndex = (N / 2) - 1;
+        return (int)pow(3, termIndex);
+    }
+}
+
+int main() {
+    int N;
+    scanf("%d", &N);
+    printf("%d\n", findNthTerm(N));
+    return 0;
+}
+
+C:
+#include <stdio.h>
+#include <math.h>
+
+int findNthTerm(int N) {
+    if (N % 2 == 1) {
+        int termIndex = N / 2;
+        return (int)pow(2, termIndex);
+    } else {
+        int termIndex = (N / 2) - 1;
+        return (int)pow(3, termIndex);
+    }
+}
+
+int main() {
+    int N;
+    scanf("%d", &N);
+    printf("%d\n", findNthTerm(N));
+    return 0;
+}
