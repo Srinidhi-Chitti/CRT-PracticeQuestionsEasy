@@ -1,0 +1,106 @@
+Q2.
+Forbidden forest
+Harry was moving through the forbidden forest. A spirit crossed his path and told him that he has to answer her question correctly or she would kill him. She told him to give her a reversed string such that each word is in its original position and the words which remain same after reversing should be enclosed within $. Harry being a wizard, has no knowledge of Muggle technology and asks for your help.
+
+Help Harry in finding out the required string.
+
+
+
+Input Format 
+
+Input1: input string
+
+
+
+Output Format
+
+Return the reversed string
+
+
+
+Example 1
+
+Sample Input 1
+
+Input1: zebra bat ball
+
+
+
+Sample Output 1
+
+arbez tab llab
+
+
+
+Explanation
+
+In example 1, the word “zebra” when rotated gives “arbez” and so on.
+
+
+
+Example 2
+
+Sample Input 2
+
+Input1: aba
+
+
+
+Sample Output 2
+
+$aba$
+
+
+
+Explanation
+
+In example 2, the word “aba” is a palindrome and hence gives “$aba$”.
+
+
+CODE:
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+
+bool isPalindrome(char *word) {
+    int len = strlen(word);
+    for (int i = 0; i < len / 2; i++) {
+        if (word[i] != word[len - 1 - i])
+            return false;
+    }
+    return true;
+}
+
+void reverseString(char *str) {
+    int len = strlen(str);
+    for (int i = 0; i < len / 2; i++) {
+        char temp = str[i];
+        str[i] = str[len - 1 - i];
+        str[len - 1 - i] = temp;
+    }
+}
+
+int main() {
+    char input[1000];
+    fgets(input, sizeof(input), stdin);
+
+    input[strcspn(input, "\n")] = '\0';
+
+    char *word = strtok(input, " ");
+    while (word != NULL) {
+        char temp[1000];
+        strcpy(temp, word);
+
+        reverseString(word);
+
+        if (isPalindrome(temp)) {
+            printf("$%s$ ", word);
+        } else {
+            printf("%s ", word);
+        }
+
+        word = strtok(NULL, " ");
+    }
+
+    return 0;
+}
